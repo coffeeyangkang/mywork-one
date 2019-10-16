@@ -9,13 +9,14 @@
 	
 	if($_POST['handle']=='yes'){
 		$id = $_POST['id'];
+		$id = explode(',',$id);
 		$newarr = array();
-		$result = $sql->query("select * from smallpics where goodid=$id ");
-		if($result->num_rows){
-			for($i=0;$i<$result->num_rows;$i++){
-				$newarr[$i] = $result->fetch_assoc();
-			} 
+		
+		for($i=0;$i<sizeof($id);$i++){
+			$result     = $sql->query("select * from smallpics where goodid=$id[$i] ");
+			$newarr[$i] = $result->fetch_assoc();
 		}
+		
 		echo json_encode($newarr);
 	}
 	

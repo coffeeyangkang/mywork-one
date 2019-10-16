@@ -1,4 +1,4 @@
-var phpurl = 'http://localhost/tianmao/php/';
+var phpurl = 'http://10.31.155.55/tianmao/php/';
 $ajax({
 	async:'true',
 	type:'post',

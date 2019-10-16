@@ -58,14 +58,16 @@ define([],function(){
 	var $img   = $('.banner-wrap>a');
 	var $index = 0;//保存上一次显示btn的索引
 	var $timer = null;
-	var $colorarr = ['#e8e8e8','#3b8da5','#fa620d','#0e0f33','#d92229','#e8e8e8'];
+	var $colorarr = ['#e8e8e8','#3b8da5','#fa620d','#0e0f33','#d92229','#e8e8e8'];//保存背景颜色
 		$btn.on('mouseover',function(){
 			clearInterval($timer);
-			$banner.css({backgroundColor:$colorarr[$(this).index()]});
-			$btn.eq($(this).index()).addClass('btnbg').siblings('span').removeClass('btnbg');
-			$img.eq($index).animate({opacity:0},500);
-			$img.eq($(this).index()).animate({opacity:1},1000);
-			$index = $(this).index();
+			
+			$banner.stop().animate({backgroundColor:$colorarr[$(this).index()]},400);
+			$btn.eq($(this).index()).addClass('btnbg').siblings('span').removeClass('btnbg');//添加和移除按钮颜色
+			$img.eq($index).stop().animate({opacity:0},500);//上次图片颜色渐变
+			$img.eq($(this).index()).stop().animate({opacity:1},500);//本次图片颜色渐变
+			
+			$index = $(this).index();//保存当前值
 		//$img.eq($(this).index())
 		});
 		
@@ -77,16 +79,18 @@ define([],function(){
 			
 			$timer = setInterval(function(){
 			if($index>=5) {
-				$banner.css({backgroundColor:$colorarr[0]});
+				$banner.stop().animate({backgroundColor:$colorarr[0]},400);
 				$btn.eq(0).addClass('btnbg').siblings('span').removeClass('btnbg');
-				$img.eq($index).animate({opacity:0},500);
-				$img.eq(0).animate({opacity:1},1000);
+				$img.eq($index).stop().animate({opacity:0},500);
+				$img.eq(0).stop().animate({opacity:1},500);
+				
 				$index = 0;
 				}else{
 					$btn.eq(++$index).addClass('btnbg').siblings('span').removeClass('btnbg');
-					$banner.css({backgroundColor:$colorarr[$index]});
-					$img.eq($index-1).animate({opacity:0},500);
-					$img.eq($index).animate({opacity:1},1000);
+					$banner.stop().animate({backgroundColor:$colorarr[$index]},400);
+					$img.eq($index-1).stop().animate({opacity:0},500);
+					$img.eq($index).stop().animate({opacity:1},500);
+					
 				}
 		},4000);
 		});

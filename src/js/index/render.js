@@ -132,10 +132,10 @@ define([],function(){
 				else if(i==5) autA.style.cssText   = 'float:left;width:236px;height:302px;margin-top:12px;background:white;';
 				else autA.style.cssText   = 'float:left;width:236px;height:302px;margin-left:13px;margin-top:12px;background:white;';
 				autImg.style.cssText = 'width:185px;height:185px;margin-top:12px;';
-				autA.href  = obj[i].tarurl+'?goodid='+obj[i].marketid;
-				autImg.src = obj[i].imgurl;
-				p1.innerHTML=obj[i].description;
-				p2.innerHTML='￥'+obj[i].price;
+				autA.href  = obj[i].tarurl+'?goodid='+obj[i].marketid;//商品的超链接
+				autImg.src = obj[i].imgurl;//商品图片远程地址
+				p1.innerHTML=obj[i].description;//产品描述
+				p2.innerHTML='￥'+obj[i].price;//产品价格
 				marketleft.appendChild(autA);
 				autA.appendChild(autImg);
 				autA.appendChild(p1);
@@ -279,6 +279,8 @@ define([],function(){
 		</ul>`;
 		}
 		like.innerHTML = str;
+		
+		//懒加载
 		$(function () { 
              $("img.lazy").lazyload({
                  effect: "fadeIn" 

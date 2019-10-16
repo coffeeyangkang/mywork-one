@@ -18,6 +18,7 @@ define([],function(){
 			unlogin[0].style.display = 'block';
 			localStorage.removeItem('logininfo');
 			localStorage.removeItem('url');
+			deleteCookie();
 			ev.stopPropagation();
 			ev.cancelBubble=true;
 		}
@@ -42,8 +43,16 @@ define([],function(){
 			document.querySelector('.show').style.display='block';
 		}
 		categeryLiList[i].onmouseout = function(){
-			
-			this.removeChild(document.querySelector('.show'));
+			//this.removeChild(document.querySelector('.show'));
 		}
 	}
 });
+
+	function deleteCookie(){
+		var arr  = document.cookie.split('; ');
+		for(var i=0,len=arr.length;i<len;i++){
+			var newarr = arr[i].split('=');
+			addCookie(newarr[0],'',-1);
+		}
+		
+	}
