@@ -1,13 +1,13 @@
 define([],function(){
-	var url     = 'http://10.31.155.55';
 	
-	//渲染第一个经常更新的广告区
+	require(['ajaxpromise'],function(aa){
+		//渲染第一个经常更新的广告区
 	var autLogo  = document.querySelector('.autumnlogo');
 	var autPics  = document.querySelector('.autumnpics');
 	var logoList = document.querySelectorAll('.ad');
 	var daoDiv   = document.querySelectorAll('#daogou>div');
-	
-	$ajax({
+	var url     = 'http://10.31.155.55';
+	aa.$ajax({
 		async:'true',
 		type:'post',
 		dataType:'json',
@@ -20,7 +20,7 @@ define([],function(){
 		logoList[1].innerHTML = `<img src=${obj[2].imgurl} style='width:100%;height:90px;'>`;
 		logoList[2].innerHTML = `<img src=${obj[3].imgurl} style='width:100%;height:90px;'>`;
 		
-		return $ajax({
+		return aa.$ajax({
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -40,7 +40,7 @@ define([],function(){
 			autA.appendChild(autImg);
 		}
 		
-		return $ajax({
+		return aa.$ajax({
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -63,7 +63,7 @@ define([],function(){
 				autA.appendChild(autImg);
 			}
 		}
-		return $ajax({
+		return aa.$ajax({
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -89,7 +89,7 @@ define([],function(){
 				num++;
 		}
 			
-		return $ajax({
+		return aa.$ajax({
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -142,7 +142,7 @@ define([],function(){
 				autA.appendChild(p2);
 			}
 		
-		return $ajax({//天猫国际
+		return aa.$ajax({//天猫国际
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -184,7 +184,7 @@ define([],function(){
 				}
 			}
 		
-		return $ajax({
+		return aa.$ajax({
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -196,7 +196,7 @@ define([],function(){
 		//渲染左侧大图以及上面的文字
 		getData('.beauty-left','.beauty-right',obj);//美丽人生
 		
-		return $ajax({
+		return aa.$ajax({
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -207,7 +207,7 @@ define([],function(){
 
 		//渲染左侧大图以及上面的文字
 		getData('.electronics-left','.electronics-right',obj);
-		return $ajax({
+		return aa.$ajax({
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -216,7 +216,7 @@ define([],function(){
 		});	
 }).then(function(obj){
 		getData('.grocery-left','.grocery-right',obj);
-		return $ajax({
+		return aa.$ajax({
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -225,7 +225,7 @@ define([],function(){
 		});	
 }).then(function(obj){
 		getData('.home-left','.home-right',obj);//打造爱巢
-		return $ajax({
+		return aa.$ajax({
 			async:'true',
 			type:'post',
 			dataType:'json',
@@ -234,7 +234,7 @@ define([],function(){
 		});	
 }).then(function(obj){
 	getData('.outdoors-left','.outdoors-right',obj);//户外出行
-	return $ajax({
+	return aa.$ajax({
 		async:'true',
 		type:'post',
 		dataType:'json',
@@ -286,16 +286,9 @@ define([],function(){
                  effect: "fadeIn" 
              });
          });
-})});
-
-
-
-
-
-
-
-
-
+})
+		
+	
 function getData(obj1,obj2,obj){
 		var beautyleft  = document.querySelector(obj1);
 		var beautyright = document.querySelector(obj2);
@@ -342,3 +335,16 @@ function getData(obj1,obj2,obj){
 			
 		}
 }
+
+	
+	});//require ajaxpromise
+	});//define end
+
+
+
+
+
+
+
+
+
