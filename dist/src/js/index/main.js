@@ -1,0 +1,1 @@
+"use strict";require(["jquery"],function(){require(["./js/index/jquery.lazyload","jqcookie","jqcolor","./js/index/render"],function(e){require(["./js/index/search"]),require(["./js/index/checklogin","./js/index/stairs"])})});
